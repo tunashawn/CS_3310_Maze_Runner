@@ -53,9 +53,9 @@ def menu():
     # To run Randomized Depth First Search
     # m.tracePath({a: dfsvisited}, delay=10)
     # m.tracePath({b: dfs_path}, delay=15)
-    l = textLabel(m, 'RUNNING DEPTH FIRST SEARCH','')
-    l1 = textLabel(m, 'Total cells explored', len(dfsvisited))
-    l2 = textLabel(m, 'Path length', len(dfs_path))
+    # l = textLabel(m, 'RUNNING DEPTH FIRST SEARCH','')
+    # l1 = textLabel(m, 'Total cells explored', len(dfsvisited))
+    # l2 = textLabel(m, 'Path length', len(dfs_path))
 
     # To run Breadth First Search
     # m.tracePath({a: bfsvisited}, delay=10)
