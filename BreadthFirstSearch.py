@@ -1,9 +1,9 @@
 from func import get_neighbor
 
 
-def breadth_first_search(m, start, goal):
+def breadth_first_search(m, start):
     """Use Breadth First Search Algorithm to find the path from START to GOAL
-        Input: a maze
+        Input: a maze and position of the agent
         Output:
         * path: a path from START to GOAL
         * visited: list of all visited cells"""
@@ -33,13 +33,13 @@ def breadth_first_search(m, start, goal):
                 # Set parent of this neighbor to the current cell
                 parent_list[neighbor] = cell
 
-                if neighbor == goal:
+                if neighbor == m._goal:
                     found = True
                     break
 
     # Trace back from the goal to the START cell
     path = {}
-    cell = goal
+    cell = m._goal
     while cell != start:
         path[parent_list[cell]] = cell
         cell = parent_list[cell]

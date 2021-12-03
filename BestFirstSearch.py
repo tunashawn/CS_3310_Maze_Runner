@@ -1,15 +1,13 @@
 from func import get_neighbor, estimated_cost
 
 
-def a_star_search(m, start, goal):
+def best_first_search(m, start):
     """Use A* Search Algorithm to find the path from START to GOAL
-    Input: a maze
+    Input: a maze and position of the agent
     Output:
     * path: a path from START to GOAL
     * visited: list of all visited cells"""
-    cost_to_reach = 0
-    total_cost = cost_to_reach + estimated_cost(start)
-    frontier = [(total_cost, cost_to_reach, start)]
+    frontier = [(estimated_cost(start, m._goal), start)]
     visited = [start]
 
     # frontier_list contains all visited cells and cells in frontier
@@ -25,11 +23,11 @@ def a_star_search(m, start, goal):
     while len(frontier) > 0 and not found:
         frontier.sort(key=lambda x: x[0])
         x = frontier.pop(0)
-        cell = x[2]
+        cell = x[1]
         visited.append(cell)
 
         # Increase cost to reach this cell
-        cost_to_reach = x[1] + 1
+        cost_to_reach = x[0] + 1
 
         # Finding neighbor cells
         for d in 'NWES':
@@ -43,20 +41,19 @@ def a_star_search(m, start, goal):
                     continue
 
                 # Calculate the total cost = h(n) + g(n)
-                total_cost = cost_to_reach + estimated_cost(neighbor, goal)
 
-                frontier.append((total_cost, cost_to_reach, neighbor))
+                frontier.append((estimated_cost(neighbor, m._goal), neighbor))
                 frontier_list.append(neighbor)
                 # Set parent of this neighbor to the current cell
                 parent_list[neighbor] = cell
 
-                if neighbor == goal:  # Break the loop if found the GOAL
+                if neighbor == m._goal:  # Break the loop if found the GOAL
                     found = True
                     break
 
     # Trace back from the goal to the START GOAL
     path = {}  # Store path from START to GOAL
-    cell = goal
+    cell = m._goal
     while cell != start:
         path[parent_list[cell]] = cell
         cell = parent_list[cell]

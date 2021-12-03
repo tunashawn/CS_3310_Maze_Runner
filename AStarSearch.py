@@ -1,14 +1,14 @@
 from func import estimated_cost, get_neighbor
 
 
-def a_star_search(m, start, goal):
+def a_star_search(m, start):
     """Use A* Search Algorithm to find the path from START to GOAL
-    Input: a maze
+    Input: a maze and the position of agent
     Output:
     * path: a path from START to GOAL
     * visited: list of all visited cells"""
     cost_to_reach = 0
-    total_cost = cost_to_reach + estimated_cost(start, goal)
+    total_cost = cost_to_reach + estimated_cost(start, m._goal)
     frontier = [(total_cost, cost_to_reach, start)]
     visited = [start]
 
@@ -43,20 +43,20 @@ def a_star_search(m, start, goal):
                     continue
 
                 # Calculate the total cost = h(n) + g(n)
-                total_cost = cost_to_reach + estimated_cost(neighbor, goal)
+                total_cost = cost_to_reach + estimated_cost(neighbor, m._goal)
 
                 frontier.append((total_cost, cost_to_reach, neighbor))
                 frontier_list.append(neighbor)
                 # Set parent of this neighbor to the current cell
                 parent_list[neighbor] = cell
 
-                if neighbor == goal: # Break the loop if found the GOAL
+                if neighbor == m._goal: # Break the loop if found the GOAL
                     found = True
                     break
 
     # Trace back from the goal to the START GOAL
     path = {}   # Store path from START to GOAL
-    cell = goal
+    cell = m._goal
     while cell != start:
         path[parent_list[cell]] = cell
         cell = parent_list[cell]
