@@ -65,11 +65,11 @@ def menu():
     # l2 = textLabel(m, 'Path length', len(bfs_path))
 
     # To run A* Search
-    # m.tracePath({a: assvisited}, delay=0)
-    # m.tracePath({b: ass_path}, delay=15)
-    # l = textLabel(m, 'RUNNING A* FIRST SEARCH', '')
-    # l1 = textLabel(m, 'Total cells explored', len(assvisited))
-    # l2 = textLabel(m, 'Path length', len(ass_path))
+    m.tracePath({a: assvisited}, delay=15)
+    m.tracePath({b: ass_path}, delay=15)
+    l = textLabel(m, 'RUNNING A* FIRST SEARCH', '')
+    l1 = textLabel(m, 'Total cells explored', len(assvisited))
+    l2 = textLabel(m, 'Path length', len(ass_path))
 
     # To compare path from 3 algorithms above
     # m.tracePath({a: dfs_path}, delay=10)
