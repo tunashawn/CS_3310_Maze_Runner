@@ -60,5 +60,5 @@ def a_star_search(m, start):
     while cell != start:
         path[parent_list[cell]] = cell
         cell = parent_list[cell]
-
+        
     return path, visited
